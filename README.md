@@ -105,6 +105,22 @@ PD < 0.30 → approve
 PD ≥ 0.50 → reject
 ```
 Таким образом, модель используется не как «чёрный ящик», а как часть decision engine, что соответствует реальным банковским скоринговым системам.
+
+Пример работы: 
+
+<img width="454" height="398" alt="image" src="https://github.com/user-attachments/assets/6ee78d6a-8ee8-422b-bd24-abccd2fec7d1" />
+
+Approve
+
+<img width="429" height="380" alt="image" src="https://github.com/user-attachments/assets/e19f3b1f-f01c-42d3-ac1d-f142781850d9" />
+
+manual review
+
+
+<img width="442" height="421" alt="image" src="https://github.com/user-attachments/assets/5772d32d-3579-443f-a19e-d625efc10644" />
+
+reject
+
 ---
 
 ##  Что показывает этот проект
