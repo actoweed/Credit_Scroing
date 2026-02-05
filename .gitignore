@@ -45,6 +45,7 @@ pip-delete-this-directory.txt
 data/raw/
 data/processed/
 *.csv
+*.parquet
 
 # Models
 models/
