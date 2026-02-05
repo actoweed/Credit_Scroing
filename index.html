@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Credit Scoring Demo</title>
+    <style>
+        body { font-family: Arial; padding: 20px; max-width: 600px; margin: auto; }
+        input, select { width: 100%; margin: 5px 0 15px 0; padding: 8px; }
+        button { padding: 10px 15px; font-size: 16px; }
+        #result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Credit Scoring Demo</h2>
+    <form id="creditForm">
+        <label>SK_ID_CURR:</label>
+        <input type="number" name="SK_ID_CURR" value="100001" required>
+
+        <label>NAME_CONTRACT_TYPE:</label>
+        <select name="NAME_CONTRACT_TYPE">
+            <option value="Cash loans">Cash loans</option>
+            <option value="Revolving loans">Revolving loans</option>
+        </select>
+
+        <label>CODE_GENDER:</label>
+        <select name="CODE_GENDER">
+            <option value="M">M</option>
+            <option value="F">F</option>
+        </select>
+
+        <label>FLAG_OWN_CAR:</label>
+        <select name="FLAG_OWN_CAR">
+            <option value="Y">Y</option>
+            <option value="N">N</option>
+        </select>
+
+        <label>FLAG_OWN_REALTY:</label>
+        <select name="FLAG_OWN_REALTY">
+            <option value="Y">Y</option>
+            <option value="N">N</option>
+        </select>
+
+        <label>CNT_CHILDREN:</label>
+        <input type="number" name="CNT_CHILDREN" value="0">
+
+        <label>AMT_INCOME_TOTAL:</label>
+        <input type="number" name="AMT_INCOME_TOTAL" value="202500">
+
+        <label>AMT_CREDIT:</label>
+        <input type="number" name="AMT_CREDIT" value="406597">
+
+        <label>AMT_ANNUITY:</label>
+        <input type="number" name="AMT_ANNUITY" value="24700">
+
+        <label>AMT_GOODS_PRICE:</label>
+        <input type="number" name="AMT_GOODS_PRICE" value="351000">
+
+        <label>NAME_TYPE_SUITE:</label>
+        <input type="text" name="NAME_TYPE_SUITE" value="Unaccompanied">
+
+        <label>NAME_INCOME_TYPE:</label>
+        <input type="text" name="NAME_INCOME_TYPE" value="Working">
+
+        <label>NAME_EDUCATION_TYPE:</label>
+        <input type="text" name="NAME_EDUCATION_TYPE" value="Secondary / secondary special">
+
+        <label>NAME_FAMILY_STATUS:</label>
+        <input type="text" name="NAME_FAMILY_STATUS" value="Single / not married">
+
+        <label>NAME_HOUSING_TYPE:</label>
+        <input type="text" name="NAME_HOUSING_TYPE" value="House / apartment">
+
+        <label>REGION_POPULATION_RELATIVE:</label>
+        <input type="number" step="0.0001" name="REGION_POPULATION_RELATIVE" value="0.02">
+
+        <label>DAYS_BIRTH:</label>
+        <input type="number" name="DAYS_BIRTH" value="-9461">
+
+        <label>DAYS_EMPLOYED:</label>
+        <input type="number" name="DAYS_EMPLOYED" value="-2000">
+
+        <label>DAYS_REGISTRATION:</label>
+        <input type="number" name="DAYS_REGISTRATION" value="-4000">
+
+        <label>DAYS_ID_PUBLISH:</label>
+        <input type="number" name="DAYS_ID_PUBLISH" value="-12000">
+
+        <label>OWN_CAR_AGE:</label>
+        <input type="number" name="OWN_CAR_AGE" value="5">
+
+        <label>FLAG_EMP_PHONE:</label>
+        <input type="number" name="FLAG_EMP_PHONE" value="1">
+
+        <label>FLAG_WORK_PHONE:</label>
+        <input type="number" name="FLAG_WORK_PHONE" value="0">
+
+        <label>FLAG_PHONE:</label>
+        <input type="number" name="FLAG_PHONE" value="1">
+
+        <label>FLAG_EMAIL:</label>
+        <input type="number" name="FLAG_EMAIL" value="0">
+
+        <label>OCCUPATION_TYPE:</label>
+        <input type="text" name="OCCUPATION_TYPE" value="Laborers">
+
+        <label>CNT_FAM_MEMBERS:</label>
+        <input type="number" name="CNT_FAM_MEMBERS" value="2">
+
+        <label>REGION_RATING_CLIENT:</label>
+        <input type="number" name="REGION_RATING_CLIENT" value="2">
+
+        <label>REGION_RATING_CLIENT_W_CITY:</label>
+        <input type="number" name="REGION_RATING_CLIENT_W_CITY" value="3">
+
+        <label>WEEKDAY_APPR_PROCESS_START:</label>
+        <input type="text" name="WEEKDAY_APPR_PROCESS_START" value="MONDAY">
+
+        <label>HOUR_APPR_PROCESS_START:</label>
+        <input type="number" name="HOUR_APPR_PROCESS_START" value="10">
+
+        <label>REG_REGION_NOT_WORK_REGION:</label>
+        <input type="number" name="REG_REGION_NOT_WORK_REGION" value="0">
+
+        <label>REG_CITY_NOT_LIVE_CITY:</label>
+        <input type="number" name="REG_CITY_NOT_LIVE_CITY" value="0">
+
+        <label>REG_CITY_NOT_WORK_CITY:</label>
+        <input type="number" name="REG_CITY_NOT_WORK_CITY" value="0">
+
+        <label>LIVE_CITY_NOT_WORK_CITY:</label>
+        <input type="number" name="LIVE_CITY_NOT_WORK_CITY" value="0">
+
+        <label>ORGANIZATION_TYPE:</label>
+        <input type="text" name="ORGANIZATION_TYPE" value="Business Entity Type 3">
+
+        <label>EXT_SOURCE_1:</label>
+        <input type="number" step="0.01" name="EXT_SOURCE_1" value="0.5">
+
+        <label>EXT_SOURCE_2:</label>
+        <input type="number" step="0.01" name="EXT_SOURCE_2" value="0.6">
+
+        <label>EXT_SOURCE_3:</label>
+        <input type="number" step="0.01" name="EXT_SOURCE_3" value="0.7">
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        const form = document.getElementById("creditForm");
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            // преобразуем числа
+            for (const key in data) {
+                if (!isNaN(data[key])) data[key] = Number(data[key]);
+            }
+
+            const response = await fetch("http://127.0.0.1:8000/predict", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            document.getElementById("result").innerText = 
+                `PD: ${result.PD}\nDecision: ${result.DECISION}`;
+        });
+    </script>
+</body>
+</html>
